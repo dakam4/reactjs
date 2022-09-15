@@ -1,6 +1,6 @@
 import React from "react";
 import { Board } from "./Board";
-import { determineWinner } from "./Functions";
+import { determineWinner, getSquareCoordinates } from "./Functions";
 
 export class Game extends React.Component{
 
@@ -11,7 +11,7 @@ export class Game extends React.Component{
                 squares: Array(9).fill(null),
             }],
             stepNumber:0,
-            xIsNext: true
+            xIsNext: true,
         }
     }
 
@@ -46,7 +46,7 @@ export class Game extends React.Component{
 
         const moves = history.map((step, move) => {
             const desc = move ?
-              'Go to move #' + move :
+              'Go to move #' + move + " : " + getSquareCoordinates(move-1) :
               'Go to game start';
             return (
               <li key={move}>
