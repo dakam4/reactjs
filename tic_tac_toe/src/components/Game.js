@@ -1,6 +1,7 @@
 import React from "react";
 import { Board } from "./Board";
 import { determineWinner, getSquareCoordinates } from "./Functions";
+import '../css/game.css';
 
 export class Game extends React.Component{
 
@@ -50,7 +51,10 @@ export class Game extends React.Component{
               'Go to game start';
             return (
               <li key={move}>
-                <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                <button  
+                  className={(this.state.stepNumber === move) ? 'bold' : ''}
+                  onClick={() => this.jumpTo(move)} >{desc}
+                </button>
               </li>
             );
           });
