@@ -4,6 +4,7 @@ import { Square } from "./Functions";
 export class Board extends React.Component{
     renderSquares(){
         let rows = [];
+
         for(let row = 0; row < 3; row++){
             let cols = [];
             for(let col = 0; col < 3; col++){
@@ -18,6 +19,7 @@ export class Board extends React.Component{
         return (
             <span key={i}>
                 <Square 
+                    winners_class={(this.props.winners.includes(i)) ? 'winner' : ''}
                     value={this.props.squares[i]}
                     onClick = {() => this.props.onClick(i)}
                 />

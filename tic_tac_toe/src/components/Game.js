@@ -21,7 +21,9 @@ export class Game extends React.Component{
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
-        if (determineWinner(squares) || squares[i]) {
+        const result = determineWinner(squares);
+
+        if ((result != null ? result[0] : result) || squares[i]) {
           return;
         }
         squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -50,7 +52,9 @@ export class Game extends React.Component{
     render(){
         const history = this.state.history;
         const current = history[this.state.stepNumber];
-        const winner = determineWinner(current.squares);
+        const result = determineWinner(current.squares);
+        const winner = (result != null ? result[0] : result);
+        const w_squares = (result != null ? result[1] : '');
 
         const moves = history.map((step, move) => {
             const desc = move ?
@@ -80,6 +84,7 @@ export class Game extends React.Component{
             <div className="game">
                 <div className="game-board">
                     <Board 
+                        winners={w_squares}
                         squares={current.squares}
                         onClick={(i) => this.handleClick(i)}
                     />
@@ -89,7 +94,6 @@ export class Game extends React.Component{
                   <div>{status}</div>
                   <br/>
                   <button 
-                    className="bold" 
                     onClick={() => this.toggle_moves_order()} >
                     Toggle moves order
                   </button>

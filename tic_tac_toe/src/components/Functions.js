@@ -1,12 +1,18 @@
 export function Square(props){
     return(
-        <button 
-            className="square" onClick = {props.onClick}>
+        <button className={props.winners_class}
+            onClick = {props.onClick}>
             {props.value}
         </button>
     );
 }
 
+/**
+ * Determine if a winner is found
+ * 
+ * @param {*} squares to test
+ * @returns winner and indexes of the winning squares
+ */
 export function determineWinner(squares){
     const lines = [
         [0, 1, 2],
@@ -21,7 +27,7 @@ export function determineWinner(squares){
     for(let i = 0; i < lines.length; i++){
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
-            return squares[a];
+            return [squares[a],[ a, b, c]];
         }
     }
     return null;

@@ -1,3 +1,8 @@
 .bold {
     font-weight: bold;
 }
+
+.winner {
+    color:azure;
+    background-color: rgb(194, 145, 145);
+}
