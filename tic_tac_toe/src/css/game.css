@@ -1,8 +1,39 @@
+.game {
+    border: 1px solid #14bdac !important;
+    border-radius: 10px !important;
+}
+
 .bold {
-    font-weight: bold;
+    font-weight: bold !important;
 }
 
 .winner {
-    color:azure;
-    background-color: rgb(194, 145, 145);
+    color:azure!important;
+    background-color: rgb(194, 145, 145)!important;
+    font-weight: bold !important;
+}
+
+.board {
+    background-color: #14bdac !important;
+    margin: 10px 0px 15px 0px;
+}
+
+.game-info {
+    margin: 15px;
+}
+
+.square {
+    margin: 0px;
+    height: 50px;
+    font-size: 25px !important;
+}
+
+.toggle-button {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.move-list {
+    display: flex !important;
+    justify-content: center !important;
 }

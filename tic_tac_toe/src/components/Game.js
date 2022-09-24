@@ -2,6 +2,7 @@ import React from "react";
 import { Board } from "./Board";
 import { determineWinner, getSquareCoordinates } from "./Functions";
 import '../css/game.css';
+import { Button, Grid, Paper } from "@material-ui/core";
 
 export class Game extends React.Component{
 
@@ -62,44 +63,51 @@ export class Game extends React.Component{
               'Go to game start';
             return (
               <li key={move}>
-                <button  
+                <Button variant="outlined" 
                   className={(this.state.stepNumber === move) ? 'bold' : ''}
                   onClick={() => this.jumpTo(move)} >{desc}
-                </button>
+                </Button>
               </li>
             );
           });
 
         let status;
         if (winner) {
-            status = 'Winner: ' + winner;
+            status = 'WINNER : ' + winner;
           } else {
-              status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+              status = 'Next player : ' + (this.state.xIsNext ? 'X' : 'O');
             }
           if(this.state.stepNumber > 8){
             status = 'GAME OVER : DRAW'
           }
 
         return(
-            <div className="game">
-                <div className="game-board">
+            <Grid container spacing={0}>
+                <Grid item xs={4}></Grid>
+                <Grid item className="game" xs={4}>
+                  <Paper elevation={0} className="game-info">
+                      {status}
+                  </Paper>
+                  <Paper className="board">
                     <Board 
                         winners={w_squares}
                         squares={current.squares}
                         onClick={(i) => this.handleClick(i)}
                     />
-                </div>
-                <div className="game-info">
-                  <br/>
-                  <div>{status}</div>
-                  <br/>
-                  <button 
-                    onClick={() => this.toggle_moves_order()} >
-                    Toggle moves order
-                  </button>
-                  <ol>{(this.state.isAscending ? moves : moves.reverse())}</ol>
-                </div>
-            </div>
+                  </Paper>
+                  <Paper elevation={0} className="toggle-button">
+                    <Button
+                      variant="contained"
+                      onClick={() => this.toggle_moves_order()}>
+                      Toggle moves order
+                    </Button>
+                  </Paper>
+                  <Paper elevation={0} className="move-list">
+                    <ol>{(this.state.isAscending ? moves : moves.reverse())}</ol>
+                  </Paper>
+                </Grid>
+                <Grid item xs={4}></Grid>
+            </Grid>
         )
     }
 }

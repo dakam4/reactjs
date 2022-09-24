@@ -1,9 +1,13 @@
+import { Button } from "@material-ui/core";
+
 export function Square(props){
     return(
-        <button className={props.winners_class}
+        <Button 
+            variant="outlined"
+            className={"square " + props.winners_class}
             onClick = {props.onClick}>
             {props.value}
-        </button>
+        </Button>
     );
 }
 
