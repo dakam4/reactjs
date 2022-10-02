@@ -13,9 +13,7 @@ const SearchFeed = () => {
 
   useEffect(() => {
     fetchFromAPI(`search/?part=snippet&q=${searchTerm}`)
-      .then((data) => setVideos(data.contents))
-    
-    ;
+      .then((data) => setVideos(data.contents));
   }, [searchTerm]);
 
   return (
